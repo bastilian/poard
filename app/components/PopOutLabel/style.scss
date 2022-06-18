@@ -1,0 +1,63 @@
+.filterSaveTb {
+  position: absolute;
+  right: 16px;
+  display: table;
+
+  input {
+    width: 200px;
+  }
+
+  .filterSavePart {
+    display: table-cell
+  }
+}
+
+.saveInput,
+.pf-c-button.saveIcon,
+.pf-c-button.cancelIcon {
+  transition: ease-in-out 250ms;
+  opacity: 0;
+
+  &.visible {
+    opacity: 1
+  }
+}
+
+.saveLabel {
+  font-weight: bold;
+}
+
+.pf-c-button.saveIcon,
+.pf-c-button.cancelIcon {
+  padding: 0 .5em;
+}
+
+.pf-c-label {
+  &.mainLabel {
+    transition: ease-in-out 250ms;
+    padding: .5em 1em;
+    min-width: 2.5em;
+  }
+
+  &.popOutLabel {
+    transition: ease-in 250ms;
+    padding-right: 0;
+    padding-left: 1em;
+    margin-right: -30px;
+  }
+}
+
+.withPopOut {
+  .pf-c-label {
+    &.mainLabel {
+      padding: .5em 1em;
+      font-weight: bold;
+    }
+
+    &.popOutLabel {
+      padding-right: 45px;
+      margin-right: -35px;
+    }
+  }
+}
+

@@ -1,0 +1,36 @@
+.logo {
+  height: 30px;
+  width: auto;
+  margin-bottom: -5px;
+  margin-right: 10px;
+}
+
+img.avatar {
+  box-shadow: 1px 1px 4px #c8c8c8;
+  border: 1px solid #b7b7b7;
+  border-radius: 50%;
+}
+div.avatar {
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+
+p.updatedBy {}
+
+.prNumber {
+  display: inline-block;
+  color: #BBB;
+}
+
+.tools {
+  box-shadow: 0 0 4px #c8c8c8;
+}
+.pf-c-tabs {
+  background: rgb(240, 240, 240) !important;
+}
+
+#app, #main, .pf-c-page__main, .pf-c-page {
+  height: 100%;
+  min-width: 100%;
+}

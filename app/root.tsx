@@ -1,0 +1,40 @@
+import type {
+  LinksFunction,
+  MetaFunction,
+} from "@remix-run/node";
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+} from "@remix-run/react";
+import pfStyles from '@patternfly/patternfly/patternfly.css';
+import style from './styles/index.css';
+import Layout from './components/Layout';
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: pfStyles }, { rel: 'stylesheet', href: style }];
+};
+
+export const meta: MetaFunction = () => ({
+  charset: "utf-8",
+  title: "Poard - pull request manager",
+});
+
+export default function App() {
+  return (
+    <html lang="en" className="h-full">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body className="h-full">
+        <Layout>
+          <Outlet />
+        </Layout>
+
+        <Scripts />
+      </body>
+    </html>
+  );
+}
