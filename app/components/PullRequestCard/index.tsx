@@ -45,6 +45,7 @@ const PullRequestCard = (pullRequest) => {
         </CardBody>
         <CardFooter>
           <Text component="small" style={{ color: 'lightgrey' }}>
+            {/* TODO This could live somewhere else as well */}
             <UpdateBy reporter={author?.username} />{' '}
             {modifiedAt ? formatDistance(new Date(modifiedAt * 1000), new Date(), { addSuffix: true }) : ''}
           </Text>

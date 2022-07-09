@@ -30,6 +30,7 @@ export const loader = async () => {
   });
 }
 
+// TODO The root "/" (here) should actually be something of a stream of all new/update pull requests that automatically updates
 export default () => {
   const { filters } = useLoaderData();
   const fetcher = useFetcher();

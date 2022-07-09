@@ -34,7 +34,7 @@ const syncRepositories = async () => {
 }
 
 const syncPullRequests = async () => {
-  // TODO Only fetch all pull requests
+  // TODO fetch all pull requests
   // TODO Set merged, closed and updated at
   const allRepossitories = await repository.all()
 
@@ -50,6 +50,7 @@ const syncPullRequests = async () => {
       merged_at: mergedAt,
       closed_at: closedAt,
     } of repoPullrequests) {
+      // TODO Also scrape labels
       const savedUser = await user.createMissing(pullRequestUser?.login, { gitHubId: pullRequestUser?.id });
       await pullRequest.createMissing(title, repository, savedUser, { gitHubId, body, createdAt, mergedAt, closedAt });
     }
