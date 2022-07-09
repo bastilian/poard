@@ -34,3 +34,63 @@ p.updatedBy {}
   height: 100%;
   min-width: 100%;
 }
+
+.filterSaveTb {
+  position: absolute;
+  right: 16px;
+  display: table;
+}
+
+.filterSaveTb input {
+  width: 200px;
+}
+
+.filterSaveTb .filterSavePart {
+  display: table-cell
+}
+
+.saveInput,
+.pf-c-button.saveIcon,
+.pf-c-button.cancelIcon {
+  transition: ease-in-out 250ms;
+  opacity: 0;
+
+  &
+}
+.saveInput.visible,
+.pf-c-button.saveIcon.visible,
+.pf-c-button.cancelIcon.visible {
+  opacity: 1
+}
+
+.saveLabel {
+  font-weight: bold;
+}
+
+.pf-c-button.saveIcon,
+.pf-c-button.cancelIcon {
+  padding: 0 .5em;
+}
+
+.pf-c-label.mainLabel {
+  transition: ease-in-out 250ms;
+  padding: .5em 1em;
+  min-width: 2.5em;
+}
+
+.pf-c-label.popOutLabel {
+  transition: ease-in 250ms;
+  padding-right: 0;
+  padding-left: 1em;
+  margin-right: -30px;
+}
+
+.withPopOut .pf-c-label.mainLabel {
+  padding: .5em 1em;
+  font-weight: bold;
+}
+
+.withPopOut .pf-c-label.popOutLabel {
+  padding-right: 45px;
+  margin-right: -35px;
+}

@@ -1,29 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Button, Toolbar, ToolbarItem, ToolbarContent, SelectOption, SelectVariant, Spinner } from '@patternfly/react-core/dist/umd/react-core';
 import { RedoIcon, MinusCircleIcon } from '@patternfly/react-icons';
-
+import AppContext from '~/utils/appContext';
 import PopOutLabel from '~/components/PopOutLabel';
 import FilterSelect from '~/components/FilterSelect';
 import FilterSave from '~/components/FilterSave';
 
-const FilterToolbar = ({ filters, onSubmit, isFetching }) => {
+const FilterToolbar = ({ onSubmit, isFetching }) => {
+  const appContext = useContext(AppContext);
+  const { filters, state: appState } = appContext || {};
+
   const [selectedFilters, setSelectedFilters] = useState({});
 
   const setFilter = (name, value, ...rest) => {
     setSelectedFilters((currentFilters) => {
-      const isSelected = (currentFilters[name] || []).indexOf(value) !== -1;
+      const { [name]: currentSelection, ...otherFilters } = currentFilters || {};
+      const isSelected = (currentSelection || []).indexOf(value) !== -1;
+      const currentCleanSelection = (currentSelection || []).filter((selectedValue) => selectedValue !== value)
       const newSelection = isSelected ?
-        (currentFilters[name] || []).filter((selectedValue) => selectedValue !== value) :
-        [...(currentFilters[name] || []), value];
+        currentCleanSelection :
+        [...currentCleanSelection, value];
 
       return {
-        ...currentFilters,
-        [name]: newSelection
+        ...otherFilters,
+        ...newSelection.length > 0 ? { [name]: newSelection } : {}
       }
     })
   }
 
   useEffect(() => {
+    appState.setAppState('selectedFilters', selectedFilters);
     onSubmit(selectedFilters);
   }, [selectedFilters])
 

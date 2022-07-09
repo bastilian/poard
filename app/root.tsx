@@ -13,7 +13,9 @@ import style from './styles/index.css';
 import Layout from './components/Layout';
 
 export const links: LinksFunction = () => {
-  return [{ rel: 'stylesheet', href: pfStyles }, { rel: 'stylesheet', href: style }];
+  return [
+    { rel: 'stylesheet', href: pfStyles },
+    { rel: 'stylesheet', href: style }];
 };
 
 export const meta: MetaFunction = () => ({
@@ -23,12 +25,12 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en">
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="h-full">
+      <body>
         <Layout>
           <Outlet />
         </Layout>
