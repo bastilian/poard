@@ -28,7 +28,7 @@ const FilterToolbar = ({ filters, onSubmit, isFetching }) => {
   }, [selectedFilters])
 
   return (
-    <Toolbar className="tools">
+    <Toolbar className="tools" isSticky>
       <ToolbarContent>
         {Object.entries(filters).map(([name, values]) => (
           <>
@@ -37,7 +37,7 @@ const FilterToolbar = ({ filters, onSubmit, isFetching }) => {
             </ToolbarItem>
             <ToolbarItem>
               <FilterSelect
-                variant={SelectVariant.checkbox}
+                variant={SelectVariant.typeaheadMulti}
                 aria-label={name.replace(/^\w/, (c) => c.toUpperCase())}
                 onSelect={(_, value) => { setFilter(name, value) }}
                 selections={selectedFilters[name]}
