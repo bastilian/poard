@@ -8,9 +8,8 @@ export const loader = async () => {
 
 export const action = async ({ request }) => {
   const form = (await request.formData())
-  const users = (await form.get('users'))?.split(',');
-  const repositories = (await form.get('repositories'))?.split(',');
-  console.log(await form.get('users'))
+  const users = (await form.get('users'))?.split(',').filter((s) => s !== '');
+  const repositories = (await form.get('repositories'))?.split(',').filter((s) => s !== '');
   const where = {
     AND: {
       ...users?.length > 0 ? {

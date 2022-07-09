@@ -1,11 +1,10 @@
 import { Page, PageSection } from '@patternfly/react-core/dist/umd/react-core';
-import Header from '../Header';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 
 const Layout = ({ children }) => (
-  // TODO Add a sidebar
-  // The sidebar should allow list saved filters as a start
-  <Page header={<Header />}>
-    <PageSection id='main'>
+  <Page header={<Header />} sidebar={<Sidebar />}>
+    <PageSection id='main' style={{ overflowY: 'auto', height: '100%' }}>
       {children}
     </PageSection>
   </Page>

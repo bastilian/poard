@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { json } from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
-import { Grid, GridItem, Spinner, Bullseye } from '@patternfly/react-core/dist/umd/react-core';
+import { Grid, GridItem, Spinner, Bullseye, Stack, StackItem } from '@patternfly/react-core/dist/umd/react-core';
 import { debounce } from '~/utils';
 import RepositoryPanel from '~/components/RepositoryPanel';
 import FilterToolbar from '~/components/FilterToolbar';
@@ -50,20 +50,18 @@ export default () => {
   }, [fetcher])
 
   return (
-    <Grid hasGutter>
-      <GridItem>
-        <FilterToolbar filters={filters} onSubmit={onSubmit} isFetching={isFetching} />
-      </GridItem>
-
-      {
-        (pullRequestsGroupedByRepo).map((repo) =>
-          repo.pullRequests.length > 0 &&
-          <GridItem key={`repo-${repo.name}`}>
-            <RepositoryPanel repositoryName={repo.name} data={repo} />
-          </GridItem>
-        )
-      }
-
-    </Grid>
+    <>
+      <FilterToolbar filters={filters} onSubmit={onSubmit} isFetching={isFetching} />
+      <Grid hasGutter style={{ marginTop: '1.5em' }}>
+        {
+          (pullRequestsGroupedByRepo).map((repo) =>
+            repo.pullRequests.length > 0 &&
+            <GridItem key={`repo-${repo.name}`}>
+              <RepositoryPanel repositoryName={repo.name} data={repo} />
+            </GridItem>
+          )
+        }
+      </Grid>
+    </>
   )
 }
