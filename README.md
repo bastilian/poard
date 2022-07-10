@@ -2,6 +2,8 @@
 
 Poard provides a user interface to manage pull requests.
 
+![poard](https://user-images.githubusercontent.com/7757/178163624-af3b0e2c-9008-4318-b911-c14e45ac8938.gif)
+
 Built on [Remix](https://remix.run/), [Prisma](https://www.prisma.io), [React](https://reactjs.org/) and [Patternfly](https://www.patternfly.org).
 
 # Requirements
