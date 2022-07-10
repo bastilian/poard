@@ -36,7 +36,7 @@ const syncRepositories = async () => {
 const syncPullRequests = async () => {
   // TODO fetch all pull requests
   // TODO Set merged, closed and updated at
-  const allRepossitories = await repository.all()
+  const allRepossitories = await repository.many()
 
   for (const repository of allRepossitories) {
     const repoPullrequests = await github.repoPullRequests(repository.name, repository.owner.name)

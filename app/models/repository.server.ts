@@ -3,6 +3,11 @@ import { log, debug } from '~/utils/log';
 
 import type { Repository } from "@prisma/client";
 
+export const many = (where = {}) =>
+  prisma.repository.findMany({
+    where, include: { pullRequests: true, owner: true }
+  });
+
 export const all = (where = {}) =>
   prisma.repository.findMany({
     where,

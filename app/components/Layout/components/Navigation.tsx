@@ -16,7 +16,7 @@ const Navigation = () => {
           {/* TODO This navitem should not get highlighted when hovering. */}
           <Text style={{ opacity: '.5' }}>No saved filters</Text>
         </NavItem>}
-
+        {/* TODO Allow reordering and maybe grouping of filters */}
         {filters?.length > 0 && filters.map((filter) =>
           <NavItem itemId={filter.name} key={filter.name} isActive={false} onClick={() => selectFilter(filter.name)}>
             {filter.name}

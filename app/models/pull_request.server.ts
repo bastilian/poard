@@ -48,13 +48,13 @@ export const allGroupedByRepository = async (where = {}) => {
     },
   });
 
-  const groupedPullRequests = pullRequests.reduce((grouped, currentPullRequest) => {
+  const groupedPullRequests = pullRequests.reduce((grouped: any, currentPullRequest) => {
     const repoName = currentPullRequest.repository.name;
-    const repositoryIndexInGrouped = grouped.findIndex((repo) => {
+    const repositoryIndexInGrouped = grouped.findIndex((repo: any) => {
       return (repo?.name === repoName);
     });
     const currentRepoInGroups = grouped[repositoryIndexInGrouped];
-    const groupedWithoutCurrent = grouped.filter((_, idx) => (idx !== repositoryIndexInGrouped));
+    const groupedWithoutCurrent = grouped.filter((_: any, idx: number) => (idx !== repositoryIndexInGrouped));
 
     return [
       ...groupedWithoutCurrent,
