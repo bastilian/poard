@@ -1,33 +1,37 @@
-import { useContext } from 'react';
-import { Nav, NavItem, NavList, NavGroup } from '@patternfly/react-core/dist/umd/react-core';
-import AppContext from '~/utils/appContext';
+import { useState } from 'react';
+import { Link } from "@remix-run/react";
+import { Nav, NavItem, NavList, NavGroup, Text } from '@patternfly/react-core/dist/umd/react-core';
+import { BookmarkIcon, SaveIcon } from '@patternfly/react-icons';
+import useFilterStore from '~/hooks/useFilterStore';
+import FilterSaveForm from '~/components/FilterSaveForm'
 
+// TODO Add way to delete filters
 const Navigation = () => {
-  const { state: appState } = useContext(AppContext);
-  const hasFilterToSave = Object.keys(appState?.current?.selectedFilters || {})?.length > 0;
-  const hasSavedFilters = false;
+  const filterStore = useFilterStore();
+  const { filters, hasFilterToSave, saveFilter } = filterStore;
 
   const onSelect = () => { };
-
+  console.log(filters)
   return <Nav onSelect={onSelect}>
     <NavList>
-      {/* TODO Filters should be saved in local storage */}
-      {(hasSavedFilters || hasFilterToSave) && <NavGroup title="Saved filters">
-        {hasFilterToSave && <NavItem>
-          Save filter
+      <NavGroup title={<Text><BookmarkIcon />&nbsp;Saved filters</Text>}>
+
+        {filters?.length === 0 && <NavItem itemId="no-filters">
+          {/* TODO This navitem should not get highlighted when hovering. */}
+          <Text style={{ opacity: '.5' }}>No saved filters</Text>
         </NavItem>}
-      </NavGroup>}
-      {/* <NavItem id="default-link2" to="#default-link2" itemId={1} isActive={false}>
-        Link 2
-      </NavItem>
-      <NavItem id="default-link3" to="#default-link3" itemId={2} isActive={false}>
-        Link 3
-      </NavItem>
-      <NavItem id="default-link4" to="#default-link4" itemId={3} isActive={false}>
-        Link 4
-      </NavItem> */}
+
+        {filters?.length > 0 && filters.map((filter) =>
+          <NavItem itemId={filter.name} key={filter.name} isActive={false}>
+            <Link to={'/filter/' + filter.name}>{filter.name}</Link>
+          </NavItem>
+        )}
+
+        <FilterSaveForm filterStore={filterStore} />
+
+      </NavGroup>
     </NavList>
-  </Nav>
+  </Nav >
 }
 
 export default Navigation;

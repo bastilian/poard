@@ -48,6 +48,7 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
                 onSelect={(_, value) => { setFilter(name, value) }}
                 selections={selectedFilters[name]}
                 placeholderText={`Select ${name}`}
+                isPlain
               >
                 {values.map((value) => <SelectOption key={value} value={value} />)}
               </FilterSelect>
