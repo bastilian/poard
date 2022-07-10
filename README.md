@@ -2,11 +2,11 @@
 
 Poard provides a user interface to manage pull requests.
 
-Based on [Remix](https://remix.run/).
+Built on [Remix](https://remix.run/), [Prisma](https://www.prisma.io), [React](https://reactjs.org/) and [Patternfly](https://www.patternfly.org).
 
 # Requirements
 
-  * Node & npm
+  * Node v16+ & npm
 
 # Installation & setup
 
@@ -17,6 +17,19 @@ Based on [Remix](https://remix.run/).
  $ CREATE_ORGS=<INSERT GITHUB ORG> npm run github:scrape # Scrape the GitHub orgs and repos and fill the database
  $ npm run dev                        # Starts the remix dev server on port 3000
 ```
+
+# Contributing
+
+Contributions are welcome! There are numerous `TODO` comments all over the repository, feel free to open a pull request addressing them.
+If you find a bug, fix it. And if you work on something, feel free to add more `TODO` comments for things that are out of reach or need further work. (fair use)
+
+## General TODOs
+
+This is a list of TODOs the aren't specific to any specific part, but the overall codebase.
+
+* [ ] Add proper stylesheets (possibly styled-components or similar) and cleanout inline styles
+* [ ] Cleanup and make type definitions proper
+* [ ] Setup cypress testing and add tests (if possible use vitest)
 
 # License (MIT)
 
