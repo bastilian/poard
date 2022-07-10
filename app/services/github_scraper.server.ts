@@ -58,6 +58,7 @@ const syncPullRequests = async () => {
   }
 }
 
+// TODO Add support for scraping users (repositories)
 export default async () => {
   await createOrganisations();
   await syncRepositories();

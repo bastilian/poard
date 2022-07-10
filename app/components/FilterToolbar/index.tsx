@@ -1,10 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { Button, Toolbar, ToolbarItem, ToolbarContent, SelectOption, SelectVariant, Spinner } from '@patternfly/react-core/dist/umd/react-core';
-import { RedoIcon, MinusCircleIcon } from '@patternfly/react-icons';
+import { Toolbar, ToolbarItem, ToolbarGroup, ToolbarContent, SelectOption, SelectVariant, Spinner } from '@patternfly/react-core/dist/umd/react-core';
 import AppContext from '~/utils/appContext';
-import PopOutLabel from '~/components/PopOutLabel';
 import FilterSelect from '~/components/FilterSelect';
-import FilterSave from '~/components/FilterSave';
 
 // TODO Add a way to clear filters
 const FilterToolbar = ({ onSubmit, isFetching }) => {
@@ -43,7 +40,7 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
     <Toolbar className="tools" isSticky>
       <ToolbarContent>
         {Object.entries(filters).map(([name, values]) => (
-          <>
+          <ToolbarGroup key={`filter-${name}`}>
             <ToolbarItem variant="label">
               {name.replace(/^\w/, (c) => c.toUpperCase())}
             </ToolbarItem>
@@ -59,14 +56,14 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
                 {values.map((value) => <SelectOption key={value} value={value} />)}
               </FilterSelect>
             </ToolbarItem>
-          </>
+          </ToolbarGroup>
         ))}
         {isFetching && <ToolbarItem style={{
           position: 'absolute',
           right: '20px',
           top: '8px'
         }}>
-          <Spinner size="lg" isSvg />
+          <Spinner size="lg" />
         </ToolbarItem>}
       </ToolbarContent>
     </Toolbar>

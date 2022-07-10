@@ -3,6 +3,8 @@ import { NavItem, Text, TextInput } from '@patternfly/react-core/dist/umd/react-
 import { SaveIcon } from '@patternfly/react-icons';
 
 // TODO Add filtername validation
+// TODO Add save on enter
+// TODO Add canceling (on ESC as well)
 const FilterSaveForm = ({ filterStore }) => {
   const filterNameInput = useRef();
   const [saveMode, setSaveMode] = useState(false)
@@ -14,16 +16,16 @@ const FilterSaveForm = ({ filterStore }) => {
   const trySaveFilter = () => {
     if (!saveMode) {
       setSaveMode(true)
-
     } else {
       filterCanBeSaved && saveFilter(filterName)
       setSaveMode(false)
+      setFilterName(undefined)
     }
   }
 
   useEffect(() => {
     filterNameInput?.current?.focus();
-  }, [filterNameInput])
+  }, [saveMode])
 
   return (
     <>
