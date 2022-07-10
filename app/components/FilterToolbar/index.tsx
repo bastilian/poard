@@ -22,17 +22,22 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
         currentCleanSelection :
         [...currentCleanSelection, value];
 
-      return {
+      const newFilters = {
         ...otherFilters,
         ...newSelection.length > 0 ? { [name]: newSelection } : {}
       }
+
+      appState.setAppState('selectedFilters', newFilters);
+      onSubmit?.(newFilters);
+
+      return newFilters;
     })
   }
 
   useEffect(() => {
-    appState.setAppState('selectedFilters', selectedFilters);
-    onSubmit(selectedFilters);
-  }, [selectedFilters])
+    setSelectedFilters(appState.current.filters)
+    onSubmit?.(appState.current.filters);
+  }, [appState.current.filters])
 
   return (
     <Toolbar className="tools" isSticky>
@@ -47,7 +52,7 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
                 variant={SelectVariant.typeaheadMulti}
                 aria-label={name.replace(/^\w/, (c) => c.toUpperCase())}
                 onSelect={(_, value) => { setFilter(name, value) }}
-                selections={selectedFilters[name]}
+                selections={selectedFilters?.[name]}
                 placeholderText={`Select ${name}`}
                 isPlain
               >
@@ -63,27 +68,6 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
         }}>
           <Spinner size="lg" isSvg />
         </ToolbarItem>}
-        {/*
-
-          <Button variant="plain" onClick={(e) => (e)}>
-            <RedoIcon />
-          </Button>
-        <ToolbarItem className="filterSaveTb">
-          {false ? <div className="filterSavePart">
-            <Button variant="plain" onClick={() => { }}>
-              <MinusCircleIcon />
-            </Button>
-          </div> : <div className="filterSavePart">
-            <FilterSave filteredPullRequestsCount={1} onSave={() => { }} />
-          </div>
-          }
-
-          <div className="filterSavePart">
-            <PopOutLabel label={1} popOutLabel={0} />
-          </div>
-
-          <Button onClick={() => onSubmit?.()}>SAVE</Button>
-        </ToolbarItem> */}
       </ToolbarContent>
     </Toolbar>
   )

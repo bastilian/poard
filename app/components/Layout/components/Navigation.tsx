@@ -1,18 +1,14 @@
-import { useState } from 'react';
-import { Link } from "@remix-run/react";
 import { Nav, NavItem, NavList, NavGroup, Text } from '@patternfly/react-core/dist/umd/react-core';
-import { BookmarkIcon, SaveIcon } from '@patternfly/react-icons';
+import { BookmarkIcon } from '@patternfly/react-icons';
 import useFilterStore from '~/hooks/useFilterStore';
 import FilterSaveForm from '~/components/FilterSaveForm'
 
 // TODO Add way to delete filters
 const Navigation = () => {
   const filterStore = useFilterStore();
-  const { filters, hasFilterToSave, saveFilter } = filterStore;
+  const { filters, selectFilter } = filterStore;
 
-  const onSelect = () => { };
-  console.log(filters)
-  return <Nav onSelect={onSelect}>
+  return <Nav>
     <NavList>
       <NavGroup title={<Text><BookmarkIcon />&nbsp;Saved filters</Text>}>
 
@@ -22,8 +18,8 @@ const Navigation = () => {
         </NavItem>}
 
         {filters?.length > 0 && filters.map((filter) =>
-          <NavItem itemId={filter.name} key={filter.name} isActive={false}>
-            <Link to={'/filter/' + filter.name}>{filter.name}</Link>
+          <NavItem itemId={filter.name} key={filter.name} isActive={false} onClick={() => selectFilter(filter.name)}>
+            {filter.name}
           </NavItem>
         )}
 
