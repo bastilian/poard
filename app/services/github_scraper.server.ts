@@ -50,8 +50,9 @@ const syncPullRequests = async () => {
       merged_at: mergedAt,
       closed_at: closedAt,
     } of repoPullrequests) {
-      // TODO Also scrape labels
+      // TODO Scrape labels, CI states, requested reviewer(s), assignees
       const savedUser = await user.createMissing(pullRequestUser?.login, { gitHubId: pullRequestUser?.id });
+      // TODO make this "sync"
       await pullRequest.createMissing(title, repository, savedUser, { gitHubId, body, createdAt, mergedAt, closedAt });
     }
   }

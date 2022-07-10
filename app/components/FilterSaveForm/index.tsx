@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { NavItem, Text, TextInput } from '@patternfly/react-core/dist/umd/react-core';
 import { SaveIcon } from '@patternfly/react-icons';
 
+// TODO Add filtername validation
 const FilterSaveForm = ({ filterStore }) => {
   const filterNameInput = useRef();
   const [saveMode, setSaveMode] = useState(false)

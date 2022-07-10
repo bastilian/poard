@@ -6,6 +6,7 @@ import PopOutLabel from '~/components/PopOutLabel';
 import FilterSelect from '~/components/FilterSelect';
 import FilterSave from '~/components/FilterSave';
 
+// TODO Add a way to clear filters
 const FilterToolbar = ({ onSubmit, isFetching }) => {
   const appContext = useContext(AppContext);
   const { filters, state: appState } = appContext || {};
