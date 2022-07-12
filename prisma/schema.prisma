@@ -70,3 +70,4 @@ model PullRequest {
 
   @@index([title, gitHubId, createdAt, closedAt, updatedAt])
 }
+
