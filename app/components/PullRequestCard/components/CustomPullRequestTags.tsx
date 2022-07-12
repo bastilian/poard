@@ -8,12 +8,12 @@ const CustomTag = ({ tagFunc, pullRequest }) => {
     ...tagResult?.labelProps || {}
   };
 
-  return tagResult &&
+  return (tagResult &&
     <a href={tagResult.link} target="_blank" rel="noreferrer">
       <Label {...labelProps}>
         {tagResult.label}
       </Label>
-    </a> || ''
+    </a>) || ''
 }
 
 const CustomPullRequestTags = ({ pullRequest }) =>

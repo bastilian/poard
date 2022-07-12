@@ -30,6 +30,7 @@ export const all = async (where = {}) => (
 );
 
 
+// TODO Repositories should (initially) be sorted by the latest update of a PR
 export const allGroupedByRepository = async (where = {}) => {
   const pullRequests = await prisma.pullRequest.findMany({
     where,

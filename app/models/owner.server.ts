@@ -1,5 +1,5 @@
 import { prisma } from "~/utils/db.server";
-import { log, debug } from '~/utils/log';
+import { log } from '~/utils/log';
 
 // TODO This should really be Organisation
 import type { Owner } from "@prisma/client";

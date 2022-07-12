@@ -5,6 +5,7 @@ import { debug } from '~/utils/log';
 let prisma: PrismaClient;
 
 declare global {
+  // eslint-disable-next-line
   var __db__: PrismaClient;
 }
 

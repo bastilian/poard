@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import AppContext from '~/utils/appContext';
 
 const useFilters = (onSubmit) => {
@@ -23,8 +23,10 @@ const useFilters = (onSubmit) => {
       return newFilters;
     })
   }
+
   useEffect(() => {
     onSubmit?.(selectedFilters)
+    // eslint-disable-next-line
   }, [selectedFilters])
 
   return {

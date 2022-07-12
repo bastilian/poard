@@ -1,13 +1,9 @@
-import { useState } from 'react'
 import { Divider, Grid, GridItem, Label, Panel, PanelHeader, PanelMain, PanelMainBody, Title } from '@patternfly/react-core/dist/umd/react-core';
-import { ThumbtackIcon } from '@patternfly/react-icons';
 
 import PullRequestCard from '../PullRequestCard';
 
-const RepositoryPanel = ({ repositoryName, data: { pullRequests = [] } }) => {
-  {/* const [showPin, setShowPin] = useState(false); */ }
-
-  return <Panel>
+const RepositoryPanel = ({ repositoryName, data: { pullRequests = [] } }) => (
+  <Panel>
     <PanelHeader>
       <Grid>
         <GridItem span={10}>
@@ -33,6 +29,6 @@ const RepositoryPanel = ({ repositoryName, data: { pullRequests = [] } }) => {
       </PanelMainBody>
     </PanelMain>
   </Panel>
-};
+);
 
 export default RepositoryPanel;

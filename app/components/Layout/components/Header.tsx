@@ -1,5 +1,5 @@
 import {
-  Grid, GridItem, Masthead, MastheadContent, MastheadMain, Nav, NavItem, NavList, Title, Text
+  Grid, GridItem, Masthead, MastheadContent, MastheadMain, Nav, Title, Text
 } from '@patternfly/react-core/dist/umd/react-core';
 
 const Header = () => (
