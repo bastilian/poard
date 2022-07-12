@@ -5,7 +5,7 @@ import useLocalStorage from '~/hooks/useLocalStorage';
 const useFilterStore = () => {
   const { state: appState } = useContext(AppContext);
   const [savedFilters, saveFilter] = useLocalStorage('filters', []);
-  const filterToSave = appState?.current?.selectedFilters || {};
+  const filterToSave = appState?.current?.filters || {};
   const hasFilterToSave = Object.keys(filterToSave).length > 0;
   const saveNewFilter = (name) => {
     saveFilter([
@@ -17,7 +17,7 @@ const useFilterStore = () => {
   const selectFilter = useMemo(() => (name) => {
     const filterToSelect = savedFilters.find(({ name: savedName }) => savedName === name)
     appState.setAppState('filters', filterToSelect.filter);
-  }, [savedFilters]);
+  }, [appState, savedFilters]);
 
   return {
     hasFilterToSave,

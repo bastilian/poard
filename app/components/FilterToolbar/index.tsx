@@ -1,49 +1,23 @@
-import { useState, useEffect, useContext } from 'react';
-import { Toolbar, ToolbarItem, ToolbarGroup, ToolbarContent, SelectOption, SelectVariant, Spinner } from '@patternfly/react-core/dist/umd/react-core';
-import AppContext from '~/utils/appContext';
+import { SelectOption, SelectVariant, Spinner, TextInput, Toolbar, ToolbarContent, ToolbarGroup, ToolbarItem } from '@patternfly/react-core/dist/umd/react-core';
 import FilterSelect from '~/components/FilterSelect';
+import useFilterFetcher from './hooks/useFilterFetcher';
+import useFilters from './hooks/useFilters';
 
 // TODO Add a way to clear filters
 const FilterToolbar = ({ onSubmit, isFetching }) => {
-  const appContext = useContext(AppContext);
-  const { filters, state: appState } = appContext || {};
-
-  const [selectedFilters, setSelectedFilters] = useState({});
-
-  const setFilter = (name, value, ...rest) => {
-    setSelectedFilters((currentFilters) => {
-      const { [name]: currentSelection, ...otherFilters } = currentFilters || {};
-      const isSelected = (currentSelection || []).indexOf(value) !== -1;
-      const currentCleanSelection = (currentSelection || []).filter((selectedValue) => selectedValue !== value)
-      const newSelection = isSelected ?
-        currentCleanSelection :
-        [...currentCleanSelection, value];
-
-      const newFilters = {
-        ...otherFilters,
-        ...newSelection.length > 0 ? { [name]: newSelection } : {}
-      }
-
-      appState.setAppState('selectedFilters', newFilters);
-      onSubmit?.(newFilters);
-
-      return newFilters;
-    })
-  }
-
-  useEffect(() => {
-    setSelectedFilters(appState.current.filters)
-    onSubmit?.(appState.current.filters);
-  }, [appState.current.filters])
+  const filters = useFilterFetcher();
+  const { selectedFilters, setFilter } = useFilters(onSubmit);
 
   return (
     <Toolbar className="tools" isSticky>
       <ToolbarContent>
+
+        <ToolbarGroup>
+          <TextInput iconVariant="search" type="search" />
+        </ToolbarGroup>
+
         {Object.entries(filters).map(([name, values]) => (
           <ToolbarGroup key={`filter-${name}`}>
-            <ToolbarItem variant="label">
-              {name.replace(/^\w/, (c) => c.toUpperCase())}
-            </ToolbarItem>
             <ToolbarItem>
               <FilterSelect
                 variant={SelectVariant.typeaheadMulti}
