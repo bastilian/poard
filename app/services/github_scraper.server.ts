@@ -43,6 +43,7 @@ const syncPullRequests = async () => {
 
     for (const {
       id: gitHubId,
+      number,
       title,
       body,
       user: pullRequestUser,
@@ -53,7 +54,7 @@ const syncPullRequests = async () => {
       // TODO Scrape labels, CI states, requested reviewer(s), assignees
       const savedUser = await user.createMissing(pullRequestUser?.login, { gitHubId: pullRequestUser?.id });
       // TODO make this "sync"
-      await pullRequest.createMissing(title, repository, savedUser, { gitHubId, body, createdAt, mergedAt, closedAt });
+      await pullRequest.createMissing(title, repository, savedUser, { gitHubId, body, createdAt, mergedAt, closedAt, number });
     }
   }
 }

@@ -11,6 +11,7 @@
     "format": "eslint --fix .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "setup": "DATABASE_URL=\"file:./data.db?connection_limit=1\" prisma migrate dev && prisma db seed",
+    "migrate": "DATABASE_URL=\"file:./data.db?connection_limit=1\" prisma migrate dev",
     "start": "remix-serve build",
     "test": "jest .",
     "typecheck": "tsc -b",

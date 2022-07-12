@@ -19,6 +19,8 @@ const PullRequestCard = (pullRequest) => {
           <Grid>
             <GridItem span={11}>
               <Avatar githubHandle={author.username} size="30" className="avatar" unstyled />
+              <span style={{ color: 'lightgrey' }}>#{number}</span>
+              {' '}
               <a target="_blank" href={url} rel="noreferrer">
                 {title}
               </a>

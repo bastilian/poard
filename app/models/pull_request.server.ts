@@ -14,6 +14,7 @@ export const all = async (where = {}) => (
       },
       updatedAt: true,
       createdAt: true,
+      number: true,
       repository: {
         select: {
           name: true,
@@ -40,6 +41,7 @@ export const allGroupedByRepository = async (where = {}) => {
       },
       updatedAt: true,
       createdAt: true,
+      number: true,
       repository: {
         select: {
           name: true,
