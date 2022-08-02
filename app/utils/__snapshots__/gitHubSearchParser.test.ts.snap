@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`parse > returns a search object 1`] = `
+{
+  "repositories": [
+    "test-repo",
+  ],
+  "text": "new addition",
+  "users": [
+    "bastilian",
+  ],
+}
+`;
