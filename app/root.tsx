@@ -15,7 +15,13 @@ import Layout from './components/Layout';
 export const links: LinksFunction = () => {
   return [
     { rel: 'stylesheet', href: pfStyles },
-    { rel: 'stylesheet', href: style }];
+    { rel: 'stylesheet', href: style },
+    {
+      rel: "icon",
+      href: "/assets/favicon.ico",
+      type: "image/ico",
+    },
+  ];
 };
 
 export const meta: MetaFunction = () => ({
