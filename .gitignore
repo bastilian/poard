@@ -4,3 +4,4 @@ node_modules
 config.ts
 /prisma/data.db
 /prisma/data.db-journal
+/coverage

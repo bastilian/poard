@@ -1,3 +1,4 @@
+import React from 'react';
 import { Page, PageSection } from '@patternfly/react-core/dist/umd/react-core';
 import { GithubIcon } from '@patternfly/react-icons';
 
@@ -5,7 +6,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import AppContext from "./components/AppContext";
 
-const Layout = ({ children }) => {
+const Layout: React.FC<React.ReactNode> = ({ children }) => {
   return (
     <AppContext>
       <Page header={<Header />} sidebar={<Sidebar />}>
