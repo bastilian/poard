@@ -17,7 +17,7 @@ const fetchOrgRepos = async (name: Owner['name'], page: number) =>
     page,
     sort: 'created',
     per_page: 100,
-  })).data
+  })).data;
 
 
 export const orgRepos = async (name: Owner['name']) => {
@@ -30,8 +30,8 @@ export const orgRepos = async (name: Owner['name']) => {
     )
   );
 
-  return pagedRepos.flat()
-}
+  return pagedRepos.flat();
+};
 
 // TODO Fetch all open pull requests (batched)
 export const repoPullRequests = async (repositoryName: Repository['name'], ownerName: Owner['name']) =>
@@ -44,4 +44,4 @@ export default (() => {
   callCount++;
   debug('Calling API count: ', callCount);
   return octokit;
-})()
+})();

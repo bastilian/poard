@@ -13,7 +13,7 @@ const createOrganisations = async () => {
   for (const name of organisationsToCreate) {
     await owner.createMissing(name);
   }
-}
+};
 
 const syncRepositories = async () => {
   // TODO ignore archived repositories
@@ -31,15 +31,15 @@ const syncRepositories = async () => {
       });
     }
   }
-}
+};
 
 const syncPullRequests = async () => {
   // TODO fetch all pull requests
   // TODO Set merged, closed and updated at
-  const allRepossitories = await repository.many()
+  const allRepossitories = await repository.many();
 
   for (const repository of allRepossitories) {
-    const repoPullrequests = await github.repoPullRequests(repository.name, repository.owner.name)
+    const repoPullrequests = await github.repoPullRequests(repository.name, repository.owner.name);
 
     for (const {
       id: gitHubId,
@@ -57,11 +57,11 @@ const syncPullRequests = async () => {
       await pullRequest.createMissing(title, repository, savedUser, { gitHubId, body, createdAt, mergedAt, closedAt, number });
     }
   }
-}
+};
 
 // TODO Add support for scraping users (repositories)
 export default async () => {
   await createOrganisations();
   await syncRepositories();
   await syncPullRequests();
-}
+};

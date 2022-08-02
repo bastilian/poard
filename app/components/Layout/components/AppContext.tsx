@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import AppContext from '~/utils/appContext';
 import useAppState from '../hooks/useAppState';
 
@@ -7,7 +7,7 @@ const AppContextProvider: React.FC<React.ReactNode> = ({ children }) => {
 
   return <AppContext.Provider value={{ state }}>
     {children}
-  </AppContext.Provider>
-}
+  </AppContext.Provider>;
+};
 
 export default AppContextProvider;

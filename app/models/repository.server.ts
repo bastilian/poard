@@ -49,7 +49,7 @@ export const create = async (
   return prisma.repository.create({
     data,
   });
-}
+};
 export const createMissing = async (
   name: Repository['name'],
   ownerId: Repository['ownerId'],
@@ -58,5 +58,5 @@ export const createMissing = async (
   if (name.length === 0) {
     return;
   }
-  return !(await getByName(name, ownerId)) && await create(name, ownerId, attributes)
-}
+  return !(await getByName(name, ownerId)) && await create(name, ownerId, attributes);
+};

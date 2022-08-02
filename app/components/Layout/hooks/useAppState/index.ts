@@ -11,14 +11,14 @@ const useAppState = () => {
         [namespace]: resultValue
       };
 
-      return newAppState
-    })
-  }
+      return newAppState;
+    });
+  };
 
   return {
     current: appState,
     setAppState: setNamespacesAppState,
   };
-}
+};
 
 export default useAppState;

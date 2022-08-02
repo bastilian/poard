@@ -13,14 +13,14 @@ const CustomTag = ({ tagFunc, pullRequest }) => {
       <Label {...labelProps}>
         {tagResult.label}
       </Label>
-    </a>) || ''
-}
+    </a>) || '';
+};
 
 const CustomPullRequestTags = ({ pullRequest }) =>
   (CUSTOM_PR_TAGS || []).map((tagFunc, idx) =>
     <span key={`custom-tag-${idx}`}>
       {' '}<CustomTag tagFunc={tagFunc} pullRequest={pullRequest} />
     </span>
-  )
+  );
 
 export default CustomPullRequestTags;

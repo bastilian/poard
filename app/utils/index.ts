@@ -1,12 +1,12 @@
 export const debounce = (func, wait) => {
-  let timeout
+  let timeout;
   return (...params) => {
-    clearTimeout(timeout)
+    clearTimeout(timeout);
     timeout = setTimeout(() => {
-      func(...params)
-    }, wait)
-  }
-}
+      func(...params);
+    }, wait);
+  };
+};
 
 export const buildFilterValues = (data) => {
   const repositories = data.filter(({ pullRequests }) =>
@@ -23,5 +23,5 @@ export const buildFilterValues = (data) => {
   return {
     repositories,
     users
-  }
-}
+  };
+};

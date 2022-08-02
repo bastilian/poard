@@ -7,7 +7,7 @@ import { SaveIcon } from '@patternfly/react-icons';
 // TODO Add canceling (on ESC as well)
 const FilterSaveForm = ({ filterStore }) => {
   const filterNameInput = useRef();
-  const [saveMode, setSaveMode] = useState(false)
+  const [saveMode, setSaveMode] = useState(false);
   const [filterName, setFilterName] = useState();
 
   const { hasFilterToSave, saveFilter } = filterStore;
@@ -15,17 +15,17 @@ const FilterSaveForm = ({ filterStore }) => {
 
   const trySaveFilter = () => {
     if (!saveMode) {
-      setSaveMode(true)
+      setSaveMode(true);
     } else {
-      filterCanBeSaved && saveFilter(filterName)
-      setSaveMode(false)
-      setFilterName(undefined)
+      filterCanBeSaved && saveFilter(filterName);
+      setSaveMode(false);
+      setFilterName(undefined);
     }
-  }
+  };
 
   useEffect(() => {
     filterNameInput?.current?.focus();
-  }, [saveMode])
+  }, [saveMode]);
 
   return (
     <>
@@ -35,8 +35,8 @@ const FilterSaveForm = ({ filterStore }) => {
           id="filterName"
           aria-label="Filter name field"
           onChange={(value, ...rest) => {
-            console.log(value, rest)
-            setFilterName(value)
+            console.log(value, rest);
+            setFilterName(value);
           }}
         />
       </NavItem>}
@@ -50,7 +50,7 @@ const FilterSaveForm = ({ filterStore }) => {
           <SaveIcon />&nbsp;Save filter</Text>
       </NavItem>}
     </>
-  )
-}
+  );
+};
 
 export default FilterSaveForm;

@@ -9,7 +9,7 @@ const useFilters = (onSubmit) => {
     setAppState('filters', (currentFilters) => {
       const { [name]: currentSelection, ...otherFilters } = currentFilters || {};
       const isSelected = (currentSelection || []).indexOf(value) !== -1;
-      const currentCleanSelection = (currentSelection || []).filter((selectedValue: string) => selectedValue !== value)
+      const currentCleanSelection = (currentSelection || []).filter((selectedValue: string) => selectedValue !== value);
       const newSelection = isSelected ?
         currentCleanSelection :
         [...currentCleanSelection, value];
@@ -17,15 +17,15 @@ const useFilters = (onSubmit) => {
       const newFilters = {
         ...otherFilters,
         ...newSelection.length > 0 ? { [name]: newSelection } : {}
-      }
+      };
 
       onSubmit?.(newFilters);
       return newFilters;
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    onSubmit?.(selectedFilters)
+    onSubmit?.(selectedFilters);
     // eslint-disable-next-line
   }, [selectedFilters])
 
@@ -33,7 +33,7 @@ const useFilters = (onSubmit) => {
     filters,
     selectedFilters,
     setFilter,
-  }
+  };
 };
 
 export default useFilters;

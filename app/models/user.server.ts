@@ -11,12 +11,12 @@ export const getByUserName = async (username: User["username"]) =>
   }))[0];
 
 export async function create(username: User["username"], attributes = {}) {
-  log('Create user: ', username)
+  log('Create user: ', username);
   const data = {
     username,
     ...attributes,
   };
-  debug('Attributes: ', data)
+  debug('Attributes: ', data);
   return prisma.user.create({
     data,
   });
@@ -35,4 +35,4 @@ export const createMissing = async (username: User["username"] = '', attributes:
   const newUser = !existingUser && await create(username, attributes);
 
   return newUser || existingUser;
-}
+};

@@ -9,16 +9,16 @@ const REPOSITORY_URL = '/repositories';
 // this endpoint should contain all neccessary data to build all filters
 const useFilterFetcher = () => {
   const fetcher = useFetcher();
-  const filters = buildFilterValues(fetcher?.data || [])
+  const filters = buildFilterValues(fetcher?.data || []);
 
 
   useEffect(() => {
     if (fetcher.type === "init") {
-      fetcher.load(REPOSITORY_URL)
+      fetcher.load(REPOSITORY_URL);
     }
-  }, [fetcher])
+  }, [fetcher]);
 
   return filters;
-}
+};
 
 export default useFilterFetcher;

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 import { useFetcher } from "@remix-run/react";
 import { Grid, GridItem } from '@patternfly/react-core/dist/umd/react-core';
 import { debounce } from '~/utils';
@@ -16,15 +16,15 @@ export default () => {
   const onSubmit = debounce((fetchFilters) => {
     // TODO this doesn't seem right
     if (fetcher.type !== "init") {
-      fetcher.submit(fetchFilters, { method: "post", action: PR_URL })
+      fetcher.submit(fetchFilters, { method: "post", action: PR_URL });
     }
-  }, 500)
+  }, 500);
 
   useEffect(() => {
     if (fetcher.type === "init") {
-      fetcher.load(PR_URL)
+      fetcher.load(PR_URL);
     }
-  }, [fetcher])
+  }, [fetcher]);
 
   return (
     <>
@@ -40,5 +40,5 @@ export default () => {
         }
       </Grid>
     </>
-  )
-}
+  );
+};

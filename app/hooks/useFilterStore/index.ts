@@ -11,11 +11,11 @@ const useFilterStore = () => {
     saveFilter([
       ...savedFilters,
       { name, filter: filterToSave }
-    ])
+    ]);
   };
 
   const selectFilter = useMemo(() => (name) => {
-    const filterToSelect = savedFilters.find(({ name: savedName }) => savedName === name)
+    const filterToSelect = savedFilters.find(({ name: savedName }) => savedName === name);
     appState.setAppState('filters', filterToSelect.filter);
   }, [appState, savedFilters]);
 
@@ -24,7 +24,7 @@ const useFilterStore = () => {
     filters: savedFilters,
     saveFilter: saveNewFilter,
     selectFilter
-  }
-}
+  };
+};
 
 export default useFilterStore;

@@ -71,7 +71,7 @@ export const allGroupedByRepository = async (where = {}) => {
     ];
   }, []);
 
-  return groupedPullRequests
+  return groupedPullRequests;
 };
 
 export const getByTitle = async (title: PullRequest["title"], repository: Repository) =>
@@ -85,16 +85,16 @@ export const create = async (title: PullRequest["title"], repository: Repository
     authorId: user.id,
     ...attributes,
   };
-  debug('Attributes: ', data)
+  debug('Attributes: ', data);
   return prisma.pullRequest.create({ data });
-}
+};
 
 export const createMissing = async (title: PullRequest["title"], repository: Repository, user: any, attributes: any) => {
   if (title.length === 0) {
     return;
   }
-  const existingPullRequest = await getByTitle(title, repository)
+  const existingPullRequest = await getByTitle(title, repository);
   const newPullRequest = !existingPullRequest && await create(title, repository, user, attributes);
 
   return newPullRequest || existingPullRequest;
-}
+};

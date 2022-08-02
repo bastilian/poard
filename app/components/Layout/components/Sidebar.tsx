@@ -3,6 +3,6 @@ import Naviation from './Navigation';
 
 const Sidebar = () => {
   return <PageSidebar nav={<Naviation />} isNavOpen />;
-}
+};
 
 export default Sidebar;

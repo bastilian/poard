@@ -1,7 +1,7 @@
 import { Nav, NavItem, NavList, NavGroup, Text } from '@patternfly/react-core/dist/umd/react-core';
 import { BookmarkIcon } from '@patternfly/react-icons';
 import useFilterStore from '~/hooks/useFilterStore';
-import FilterSaveForm from '~/components/FilterSaveForm'
+import FilterSaveForm from '~/components/FilterSaveForm';
 
 // TODO Add way to delete filters
 const Navigation = () => {
@@ -27,7 +27,7 @@ const Navigation = () => {
 
       </NavGroup>
     </NavList>
-  </Nav >
-}
+  </Nav >;
+};
 
 export default Navigation;

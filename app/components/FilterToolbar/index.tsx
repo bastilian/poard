@@ -22,7 +22,7 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
               <FilterSelect
                 variant={SelectVariant.typeaheadMulti}
                 aria-label={name.replace(/^\w/, (c) => c.toUpperCase())}
-                onSelect={(_, value) => { setFilter(name, value) }}
+                onSelect={(_, value) => { setFilter(name, value); }}
                 selections={selectedFilters?.[name]}
                 placeholderText={`Select ${name}`}
                 isPlain
@@ -41,7 +41,7 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
         </ToolbarItem>}
       </ToolbarContent>
     </Toolbar>
-  )
-}
+  );
+};
 
 export default FilterToolbar;

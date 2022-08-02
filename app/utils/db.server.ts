@@ -16,7 +16,7 @@ const prismaClient = () =>
         url: DATABASE_URL,
       },
     },
-  })
+  });
 
 
 if (process.env.NODE_ENV === "production") {
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
     global.__db__ = prismaClient();
   }
   prisma = global.__db__;
-  debug('Connecting to database', DATABASE_URL)
+  debug('Connecting to database', DATABASE_URL);
   prisma.$connect();
 }
 

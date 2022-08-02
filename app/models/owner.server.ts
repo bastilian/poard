@@ -18,15 +18,15 @@ export const create = async (name: Owner["name"]) => {
       name,
     },
   });
-}
+};
 
 export const deleteByName = async (name: Owner["name"]) =>
-  prisma.owner.delete({ where: { name } })
+  prisma.owner.delete({ where: { name } });
 
 export const createMissing = async (name: string) => {
   if (name.length === 0) {
     return;
   }
-  const existingOwner = await getByName(name)
-  !existingOwner && await create(name)
-}
+  const existingOwner = await getByName(name);
+  !existingOwner && await create(name);
+};

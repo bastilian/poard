@@ -6,5 +6,5 @@ describe('Layout', () => {
   it('should render', () => {
     const { getByText } = render(<Layout />);
     expect(getByText('Poard').getAttribute('href')).toBe('/');
-  })
-})
+  });
+});
