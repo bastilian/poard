@@ -1,3 +1,4 @@
+import React from 'react';
 import { Nav, NavItem, NavList, NavGroup, Text } from '@patternfly/react-core/dist/umd/react-core';
 import { BookmarkIcon } from '@patternfly/react-icons';
 import useFilterStore from '~/hooks/useFilterStore';
