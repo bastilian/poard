@@ -29,14 +29,26 @@ const queryObject = (query: string[], key: string, tags: (string | string[])) =>
 // * draft - https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests#search-for-draft-pull-requests
 // * review(-*) -  https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests#search-by-pull-request-review-status-and-reviewer
 // * team/mention
+// See for more: https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests
+export const queryMap = {
+  organisations: 'org',
+  users: ['user', 'author'],
+  repositories: 'repo',
+  // TODO these need more data imported to be implemented.
+  // assignees: 'assignee',
+  // commenters: 'commenter',
+  // labels: 'label',
+  // comments: 'comments', // comment count, actually.
+};
+
 const parse = (query: string) => {
   const queryArray = query.split(' ');
 
   return {
     ...textQueries(queryArray),
-    ...queryObject(queryArray, 'organisations', 'org'),
-    ...queryObject(queryArray, 'users', ['user', 'author']),
-    ...queryObject(queryArray, 'repositories', 'repo'),
+    ...Object.entries(queryMap).reduce((currentQueryObject, [key, tags]) => (
+      { ...currentQueryObject, ...queryObject(queryArray, key, tags) }
+    ), {}),
   };
 };
 
