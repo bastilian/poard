@@ -8,6 +8,8 @@ describe('parse', () => {
   const author = 'bastilian';
   const authorQuery = 'author:' + author;
   const userQuery = 'user:' + author;
+  const organisation = 'BastilianOrg';
+  const organisationQuery = 'org:' + organisation;
 
   it('returns a search object', () => {
     const query = [textQuery, repositoryQuery, authorQuery].join(' ');
@@ -62,6 +64,24 @@ describe('parse', () => {
       const duplicateUsers = [...users, ...users];
 
       expect(parse(duplicateUsers.map((user) => `user:${user}`).join(' ')).users).toEqual(users);
+    });
+  });
+
+
+  describe('org queries ', () => {
+    const organisations = ['test-org1', 'test-org2', 'test-org3'];
+    it('returns query object with organisations', () => {
+      expect(parse(organisationQuery).organisations).toEqual([organisation]);
+    });
+
+    it('can return multiple organisations', () => {
+      expect(parse(organisations.map((org) => `org:${org}`).join(' ')).organisations).toEqual(organisations);
+    });
+
+    it('can return multiple organisations, but no duplicates', () => {
+      const duplicateOrganisations = [...organisations, ...organisations];
+
+      expect(parse(duplicateOrganisations.map((org) => `org:${org}`).join(' ')).organisations).toEqual(organisations);
     });
   });
 });

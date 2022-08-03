@@ -6,43 +6,37 @@ const isTaggedQuery = (queryPart: string) =>
 const deduplicate = (array: unknown[]) =>
   [...new Set(array)];
 
-const queryPartsTaggedWith = (queryParts: string[], tag: (string | string[])) => {
-  const tags = Array.isArray(tag) ? tag : [tag];
-
-  return queryParts.filter((queryPart) => {
-    const [tag] = queryPart.split(TAG_DELIMITER);
-    return tags.includes(tag);
-  });
-};
+const queryPartsTaggedWith = (queryParts: string[], tag: (string | string[])) => (
+  queryParts.filter((queryPart) =>
+    ((Array.isArray(tag) ? tag : [tag]).includes(queryPart.split(TAG_DELIMITER)[0])))
+);
 
 const textQueries = (queryParts: string[]) => ({
-  text: queryParts.reduce((allTextPartsString, queryPart) => {
-    return allTextPartsString + (isTaggedQuery(queryPart) ? `${queryPart} ` : '');
-  }, '').trimEnd()
+  text: queryParts.reduce((allTextPartsString, queryPart) => (
+    allTextPartsString + (isTaggedQuery(queryPart) ? `${queryPart} ` : '')
+  ), '').trimEnd()
 });
 
-const repositoryQueries = (repositoryQueryParts: string[]) => {
-  const repositories = deduplicate(repositoryQueryParts.map((part) => part.split(TAG_DELIMITER)[1]));
-  return {
-    repositories
-  };
+const queryObject = (query: string[], key: string, tags: (string | string[])) => {
+  const queryParts = queryPartsTaggedWith(query, tags);
+  const values = deduplicate(queryParts.map((part) => part.split(TAG_DELIMITER)[1]));
+  return values.length > 0 ? {
+    [key]: values
+  } : {};
 };
 
-const userQueries = (userQueryParts: string[]) => {
-  const users = deduplicate(userQueryParts.map((part) => part.split(TAG_DELIMITER)[1]));
-  return {
-    users
-  };
-};
-
-
+// TODO Add Support for:
+// * draft - https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests#search-for-draft-pull-requests
+// * review(-*) -  https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests#search-by-pull-request-review-status-and-reviewer
+// * team/mention
 const parse = (query: string) => {
-  const queryParts = query.split(' ');
+  const queryArray = query.split(' ');
 
   return {
-    ...userQueries(queryPartsTaggedWith(queryParts, ['user', 'author'])),
-    ...repositoryQueries(queryPartsTaggedWith(queryParts, 'repo')),
-    ...textQueries(queryParts)
+    ...textQueries(queryArray),
+    ...queryObject(queryArray, 'organisations', 'org'),
+    ...queryObject(queryArray, 'users', ['user', 'author']),
+    ...queryObject(queryArray, 'repositories', 'repo'),
   };
 };
 
