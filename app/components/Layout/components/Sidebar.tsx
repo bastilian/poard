@@ -1,7 +1,7 @@
 import { PageSidebar } from '@patternfly/react-core/dist/umd/react-core';
 import Naviation from './Navigation';
 
-const Sidebar = () => {
+const Sidebar: React.FC = () => {
   return <PageSidebar nav={<Naviation />} isNavOpen />;
 };
 

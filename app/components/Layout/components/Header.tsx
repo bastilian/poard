@@ -2,7 +2,7 @@ import {
   Grid, GridItem, Masthead, MastheadContent, MastheadMain, Nav, Title, Text
 } from '@patternfly/react-core/dist/umd/react-core';
 
-const Header = () => (
+const Header: React.FC = () => (
   <Masthead backgroundColor="dark-400">
     <MastheadMain>
       <Title headingLevel="h1">

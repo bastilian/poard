@@ -4,7 +4,7 @@ import useFilterStore from '~/hooks/useFilterStore';
 import FilterSaveForm from '~/components/FilterSaveForm';
 
 // TODO Add way to delete filters
-const Navigation = () => {
+const Navigation: React.FC = () => {
   const filterStore = useFilterStore();
   const { filters, selectFilter } = filterStore;
 

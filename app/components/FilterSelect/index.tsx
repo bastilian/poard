@@ -1,7 +1,11 @@
 import { Select } from '@patternfly/react-core/dist/umd/react-core';
 import { useState } from 'react';
 
-const FilterSelect = ({ children, ...props }) => {
+interface FilterSelectProps {
+  children: React.ReactNode
+}
+
+const FilterSelect: React.FC<FilterSelectProps> = ({ children, ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

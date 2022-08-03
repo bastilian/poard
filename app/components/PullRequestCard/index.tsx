@@ -2,11 +2,13 @@
 import { Card, CardBody, CardFooter, CardTitle, Grid, GridItem, Label, Text } from '@patternfly/react-core/dist/umd/react-core';
 import moment from 'moment';
 import Avatar from 'react-avatar';
+import type { PullRequest } from "@prisma/client";
+
 import UpdateBy from './components/UpdatedBy';
 import CustomPullRequestTags from './components/CustomPullRequestTags';
 import { age, labelColor } from './helpers';
 
-const PullRequestCard = (pullRequest) => {
+const PullRequestCard = (pullRequest: PullRequest) => {
   const { title, updatedAt, createdAt, author, number, url } = pullRequest;
   const updatedAtDate = updatedAt && moment(updatedAt);
   const createdAtDate = createdAt && moment(createdAt);

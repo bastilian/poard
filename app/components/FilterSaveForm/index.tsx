@@ -2,15 +2,19 @@ import { useState, useRef, useEffect } from 'react';
 import { NavItem, Text, TextInput } from '@patternfly/react-core/dist/umd/react-core';
 import { SaveIcon } from '@patternfly/react-icons';
 
+interface FilterSaveFormProps {
+  filterStore?: unknown
+}
+
 // TODO Add filtername validation
 // TODO Add save on enter
 // TODO Add canceling (on ESC as well)
-const FilterSaveForm = ({ filterStore }) => {
+const FilterSaveForm: React.FC<FilterSaveFormProps> = ({ filterStore }) => {
   const filterNameInput = useRef();
   const [saveMode, setSaveMode] = useState(false);
   const [filterName, setFilterName] = useState();
 
-  const { hasFilterToSave, saveFilter } = filterStore;
+  const { hasFilterToSave, saveFilter } = filterStore || {};
   const filterCanBeSaved = filterName?.length > 0;
 
   const trySaveFilter = () => {

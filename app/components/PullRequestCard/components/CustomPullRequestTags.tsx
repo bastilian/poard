@@ -1,22 +1,12 @@
+import type { PullRequest } from "@prisma/client";
 import { CUSTOM_PR_TAGS } from '~/../config';
-import { Label } from '@patternfly/react-core/dist/umd/react-core';
+import CustomTag from './CustomTag';
 
-const CustomTag = ({ tagFunc, pullRequest }) => {
-  const tagResult = tagFunc?.(pullRequest);
+interface CustomPullRequestTagsProps {
+  pullRequest: PullRequest
+}
 
-  const labelProps = {
-    ...tagResult?.labelProps || {}
-  };
-
-  return (tagResult &&
-    <a href={tagResult.link} target="_blank" rel="noreferrer">
-      <Label {...labelProps}>
-        {tagResult.label}
-      </Label>
-    </a>) || '';
-};
-
-const CustomPullRequestTags = ({ pullRequest }) =>
+const CustomPullRequestTags: React.FC<CustomPullRequestTagsProps> = ({ pullRequest }) =>
   (CUSTOM_PR_TAGS || []).map((tagFunc, idx) =>
     <span key={`custom-tag-${idx}`}>
       {' '}<CustomTag tagFunc={tagFunc} pullRequest={pullRequest} />
