@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  # Main Application
+  app:
+    build: .
+    command: sh -c "npm run dev"
+    volumes:
+      - /db
+      - .:/app
+
+  # Prisma Database UI
+  db-ui:
+    build: .
+    command: sh -c "npm run db:studio"
+    volumes:
+      - /db
+      - .:/app
