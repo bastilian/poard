@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 import { DATABASE_URL } from '../../config';
 import { debug } from '~/utils/log';
 
@@ -18,8 +18,7 @@ const prismaClient = () =>
     },
   });
 
-
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   prisma = prismaClient();
 } else {
   if (!global.__db__) {

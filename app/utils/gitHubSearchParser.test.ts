@@ -34,14 +34,19 @@ describe('parse', () => {
 
     it('can return multiple repositories', () => {
       const repositories = ['test-repo1', 'test-repo2', 'test-repo3'];
-      expect(parse(repositories.map((repo) => `repo:${repo}`).join(' ')).repositories).toEqual(repositories);
+      expect(
+        parse(repositories.map((repo) => `repo:${repo}`).join(' ')).repositories
+      ).toEqual(repositories);
     });
 
     it('can return multiple repositories, but no duplicates', () => {
       const repositories = ['test-repo1', 'test-repo2', 'test-repo3'];
       const duplicateRepositories = [...repositories, ...repositories];
 
-      expect(parse(duplicateRepositories.map((repo) => `repo:${repo}`).join(' ')).repositories).toEqual(repositories);
+      expect(
+        parse(duplicateRepositories.map((repo) => `repo:${repo}`).join(' '))
+          .repositories
+      ).toEqual(repositories);
     });
   });
 
@@ -56,17 +61,20 @@ describe('parse', () => {
 
     it('can return multiple users', () => {
       const users = ['user1', 'user2', 'user3'];
-      expect(parse(users.map((user) => `user:${user}`).join(' ')).users).toEqual(users);
+      expect(
+        parse(users.map((user) => `user:${user}`).join(' ')).users
+      ).toEqual(users);
     });
 
     it('can return multiple users, but no duplicates', () => {
       const users = ['user1', 'user2', 'user3'];
       const duplicateUsers = [...users, ...users];
 
-      expect(parse(duplicateUsers.map((user) => `user:${user}`).join(' ')).users).toEqual(users);
+      expect(
+        parse(duplicateUsers.map((user) => `user:${user}`).join(' ')).users
+      ).toEqual(users);
     });
   });
-
 
   describe('org queries ', () => {
     const organisations = ['test-org1', 'test-org2', 'test-org3'];
@@ -75,13 +83,18 @@ describe('parse', () => {
     });
 
     it('can return multiple organisations', () => {
-      expect(parse(organisations.map((org) => `org:${org}`).join(' ')).organisations).toEqual(organisations);
+      expect(
+        parse(organisations.map((org) => `org:${org}`).join(' ')).organisations
+      ).toEqual(organisations);
     });
 
     it('can return multiple organisations, but no duplicates', () => {
       const duplicateOrganisations = [...organisations, ...organisations];
 
-      expect(parse(duplicateOrganisations.map((org) => `org:${org}`).join(' ')).organisations).toEqual(organisations);
+      expect(
+        parse(duplicateOrganisations.map((org) => `org:${org}`).join(' '))
+          .organisations
+      ).toEqual(organisations);
     });
   });
 });

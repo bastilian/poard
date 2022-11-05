@@ -19,15 +19,19 @@ const syncRepositories = async () => {
   // TODO ignore archived repositories
   const allOrganisations = await owner.all();
 
-  for (const {
-    id: orgId,
-    name: orgName,
-  } of allOrganisations) {
+  for (const { id: orgId, name: orgName } of allOrganisations) {
     const orgRepos = await github.orgRepos(orgName);
 
-    for (const { id: gitHubId, name: repoName, created_at: createdAt, updated_at: updatedAt } of orgRepos) {
+    for (const {
+      id: gitHubId,
+      name: repoName,
+      created_at: createdAt,
+      updated_at: updatedAt,
+    } of orgRepos) {
       await repository.createMissing(repoName, orgId, {
-        createdAt, updatedAt, gitHubId
+        createdAt,
+        updatedAt,
+        gitHubId,
       });
     }
   }
@@ -39,7 +43,10 @@ const syncPullRequests = async () => {
   const allRepossitories = await repository.many();
 
   for (const repository of allRepossitories) {
-    const repoPullrequests = await github.repoPullRequests(repository.name, repository.owner.name);
+    const repoPullrequests = await github.repoPullRequests(
+      repository.name,
+      repository.owner.name
+    );
 
     for (const {
       id: gitHubId,
@@ -52,9 +59,18 @@ const syncPullRequests = async () => {
       closed_at: closedAt,
     } of repoPullrequests) {
       // TODO Scrape labels, CI states, requested reviewer(s), assignees
-      const savedUser = await user.createMissing(pullRequestUser?.login, { gitHubId: pullRequestUser?.id });
+      const savedUser = await user.createMissing(pullRequestUser?.login, {
+        gitHubId: pullRequestUser?.id,
+      });
       // TODO make this "sync"
-      await pullRequest.createMissing(title, repository, savedUser, { gitHubId, body, createdAt, mergedAt, closedAt, number });
+      await pullRequest.createMissing(title, repository, savedUser, {
+        gitHubId,
+        body,
+        createdAt,
+        mergedAt,
+        closedAt,
+        number,
+      });
     }
   }
 };

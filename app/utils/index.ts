@@ -9,19 +9,20 @@ export const debounce = (func, wait) => {
 };
 
 export const buildFilterValues = (data) => {
-  const repositories = data.filter(({ pullRequests }) =>
-    pullRequests.length > 0
-  ).map(({ name }) => (name)).sort();
-  const users = [...new Set(
-    data.flatMap(({ pullRequests }) =>
-      pullRequests.map((
-        { author: { username } }
-      ) => username)
-    )
-  )].sort();
+  const repositories = data
+    .filter(({ pullRequests }) => pullRequests.length > 0)
+    .map(({ name }) => name)
+    .sort();
+  const users = [
+    ...new Set(
+      data.flatMap(({ pullRequests }) =>
+        pullRequests.map(({ author: { username } }) => username)
+      )
+    ),
+  ].sort();
 
   return {
     repositories,
-    users
+    users,
   };
 };

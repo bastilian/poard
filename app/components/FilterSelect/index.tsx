@@ -2,7 +2,7 @@ import { Select } from '@patternfly/react-core/dist/umd/react-core';
 import { useState } from 'react';
 
 interface FilterSelectProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const FilterSelect: React.FC<FilterSelectProps> = ({ children, ...props }) => {

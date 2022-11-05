@@ -1,16 +1,15 @@
-import { prisma } from "~/utils/db.server";
+import { prisma } from '~/utils/db.server';
 import { log } from '~/utils/log';
 
 // TODO This should really be Organisation
-import type { Owner } from "@prisma/client";
+import type { Owner } from '@prisma/client';
 
-export const all = () =>
-  prisma.owner.findMany();
+export const all = () => prisma.owner.findMany();
 
-export const getByName = async (name: Owner["name"]) =>
+export const getByName = async (name: Owner['name']) =>
   prisma.owner.findUnique({ where: { name } });
 
-export const create = async (name: Owner["name"]) => {
+export const create = async (name: Owner['name']) => {
   log('Creating owner: ' + name);
 
   return prisma.owner.create({
@@ -20,7 +19,7 @@ export const create = async (name: Owner["name"]) => {
   });
 };
 
-export const deleteByName = async (name: Owner["name"]) =>
+export const deleteByName = async (name: Owner['name']) =>
   prisma.owner.delete({ where: { name } });
 
 export const createMissing = async (name: string) => {
@@ -28,5 +27,5 @@ export const createMissing = async (name: string) => {
     return;
   }
   const existingOwner = await getByName(name);
-  !existingOwner && await create(name);
+  !existingOwner && (await create(name));
 };

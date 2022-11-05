@@ -5,10 +5,11 @@ const useAppState = () => {
 
   const setNamespacesAppState = (namespace: string, value: unknown) => {
     setAppState((currentAppState) => {
-      const resultValue = (typeof value === 'function') ? value(currentAppState[namespace]) : value;
+      const resultValue =
+        typeof value === 'function' ? value(currentAppState[namespace]) : value;
       const newAppState = {
         ...currentAppState,
-        [namespace]: resultValue
+        [namespace]: resultValue,
       };
 
       return newAppState;

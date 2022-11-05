@@ -1,5 +1,12 @@
 import {
-  Grid, GridItem, Masthead, MastheadContent, MastheadMain, Nav, Title, Text
+  Grid,
+  GridItem,
+  Masthead,
+  MastheadContent,
+  MastheadMain,
+  Nav,
+  Title,
+  Text,
 } from '@patternfly/react-core/dist/umd/react-core';
 
 const Header: React.FC = () => (
@@ -8,7 +15,9 @@ const Header: React.FC = () => (
       <Title headingLevel="h1">
         <a href="/">Poard</a>
       </Title>
-      <Text style={{ fontWeight: 'normal !important' }}>&nbsp;- pull request manager</Text>
+      <Text style={{ fontWeight: 'normal !important' }}>
+        &nbsp;- pull request manager
+      </Text>
     </MastheadMain>
     <MastheadContent>
       <Grid>

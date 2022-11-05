@@ -1,8 +1,16 @@
-
-import { Card, CardBody, CardFooter, CardTitle, Grid, GridItem, Label, Text } from '@patternfly/react-core/dist/umd/react-core';
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  Grid,
+  GridItem,
+  Label,
+  Text,
+} from '@patternfly/react-core/dist/umd/react-core';
 import moment from 'moment';
 import Avatar from 'react-avatar';
-import type { PullRequest } from "@prisma/client";
+import type { PullRequest } from '@prisma/client';
 
 import UpdateBy from './components/UpdatedBy';
 import CustomPullRequestTags from './components/CustomPullRequestTags';
@@ -20,30 +28,33 @@ const PullRequestCard = (pullRequest: PullRequest) => {
         <CardTitle>
           <Grid>
             <GridItem span={11}>
-              <Avatar githubHandle={author.username} size="30" className="avatar" unstyled />
-              <span style={{ color: 'lightgrey' }}>#{number}</span>
-              {' '}
+              <Avatar
+                githubHandle={author.username}
+                size="30"
+                className="avatar"
+                unstyled
+              />
+              <span style={{ color: 'lightgrey' }}>#{number}</span>{' '}
               <a target="_blank" href={url} rel="noreferrer">
                 {title}
               </a>
             </GridItem>
             <GridItem span={1} style={{ textAlign: 'right' }}>
-              <Label color={labelColor(modifiedAt.unix())}>{age(modifiedAt.unix())}</Label>
+              <Label color={labelColor(modifiedAt.unix())}>
+                {age(modifiedAt.unix())}
+              </Label>
             </GridItem>
           </Grid>
         </CardTitle>
         <CardBody>
-
           {/* TODO put pullrequest labels here. */}
 
           <CustomPullRequestTags pullRequest={pullRequest} />
-
         </CardBody>
         <CardFooter>
           <Text component="small" style={{ color: 'lightgrey' }}>
             {/* TODO This could live somewhere else as well */}
-            <UpdateBy reporter={author?.username} />{' '}
-            {modifiedAt.fromNow()}
+            <UpdateBy reporter={author?.username} /> {modifiedAt.fromNow()}
           </Text>
         </CardFooter>
       </Card>

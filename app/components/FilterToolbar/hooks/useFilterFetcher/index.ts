@@ -1,6 +1,6 @@
 import { buildFilterValues } from '~/utils';
 import { useEffect } from 'react';
-import { useFetcher } from "@remix-run/react";
+import { useFetcher } from '@remix-run/react';
 
 const REPOSITORY_URL = '/repositories';
 
@@ -11,9 +11,8 @@ const useFilterFetcher = () => {
   const fetcher = useFetcher();
   const filters = buildFilterValues(fetcher?.data || []);
 
-
   useEffect(() => {
-    if (fetcher.type === "init") {
+    if (fetcher.type === 'init') {
       fetcher.load(REPOSITORY_URL);
     }
   }, [fetcher]);

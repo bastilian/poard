@@ -1,11 +1,12 @@
-import { prisma } from "~/utils/db.server";
+import { prisma } from '~/utils/db.server';
 import { log, debug } from '~/utils/log';
 
-import type { Repository } from "@prisma/client";
+import type { Repository } from '@prisma/client';
 
 export const many = (where = {}) =>
   prisma.repository.findMany({
-    where, include: { pullRequests: true, owner: true }
+    where,
+    include: { pullRequests: true, owner: true },
   });
 
 export const all = (where = {}) =>
@@ -16,25 +17,38 @@ export const all = (where = {}) =>
       owner: true,
       _count: {
         select: {
-          pullRequests: true
-        }
+          pullRequests: true,
+        },
       },
       pullRequests: {
         select: {
-          id: true, title: true, author: true, updatedAt: true, createdAt: true, repository: true
+          id: true,
+          title: true,
+          author: true,
+          updatedAt: true,
+          createdAt: true,
+          repository: true,
         },
         orderBy: {
-          createdAt: 'desc'
-        }
-      }
+          createdAt: 'desc',
+        },
+      },
     },
   });
 
-export const getByName = async (name: Repository["name"], ownerId: Repository["ownerId"]) =>
-  (await prisma.repository.findMany({ where: { name, ownerId }, include: { owner: true } }))[0];
+export const getByName = async (
+  name: Repository['name'],
+  ownerId: Repository['ownerId']
+) =>
+  (
+    await prisma.repository.findMany({
+      where: { name, ownerId },
+      include: { owner: true },
+    })
+  )[0];
 
 export const create = async (
-  name: Repository["name"],
+  name: Repository['name'],
   ownerId: Repository['ownerId'],
   attributes = {}
 ) => {
@@ -53,10 +67,13 @@ export const create = async (
 export const createMissing = async (
   name: Repository['name'],
   ownerId: Repository['ownerId'],
-  attributes: object = {},
+  attributes: object = {}
 ) => {
   if (name.length === 0) {
     return;
   }
-  return !(await getByName(name, ownerId)) && await create(name, ownerId, attributes);
+  return (
+    !(await getByName(name, ownerId)) &&
+    (await create(name, ownerId, attributes))
+  );
 };

@@ -1,9 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavItem, Text, TextInput } from '@patternfly/react-core/dist/umd/react-core';
+import {
+  NavItem,
+  Text,
+  TextInput,
+} from '@patternfly/react-core/dist/umd/react-core';
 import { SaveIcon } from '@patternfly/react-icons';
 
 interface FilterSaveFormProps {
-  filterStore?: unknown
+  filterStore?: unknown;
 }
 
 // TODO Add filtername validation
@@ -33,26 +37,35 @@ const FilterSaveForm: React.FC<FilterSaveFormProps> = ({ filterStore }) => {
 
   return (
     <>
-      {saveMode && <NavItem>
-        <TextInput
-          ref={filterNameInput}
-          id="filterName"
-          aria-label="Filter name field"
-          onChange={(value, ...rest) => {
-            console.log(value, rest);
-            setFilterName(value);
-          }}
-        />
-      </NavItem>}
-      {hasFilterToSave && <NavItem onClick={trySaveFilter}>
-        <Text style={{
-          cursor: 'pointer',
-          ...(filterCanBeSaved && { opacity: '1' }) || {
-            opacity: '.5', fontSize: '.9em'
-          },
-        }}>
-          <SaveIcon />&nbsp;Save filter</Text>
-      </NavItem>}
+      {saveMode && (
+        <NavItem>
+          <TextInput
+            ref={filterNameInput}
+            id="filterName"
+            aria-label="Filter name field"
+            onChange={(value, ...rest) => {
+              console.log(value, rest);
+              setFilterName(value);
+            }}
+          />
+        </NavItem>
+      )}
+      {hasFilterToSave && (
+        <NavItem onClick={trySaveFilter}>
+          <Text
+            style={{
+              cursor: 'pointer',
+              ...((filterCanBeSaved && { opacity: '1' }) || {
+                opacity: '.5',
+                fontSize: '.9em',
+              }),
+            }}
+          >
+            <SaveIcon />
+            &nbsp;Save filter
+          </Text>
+        </NavItem>
+      )}
     </>
   );
 };

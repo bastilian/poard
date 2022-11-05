@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import { join } from "node:path";
+import { join } from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
@@ -11,8 +11,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     reporters: 'verbose',
-    alias: [
-      { find: "~/", replacement: join(__dirname, "./app/") }
-    ],
+    alias: [{ find: '~/', replacement: join(__dirname, './app/') }],
   },
 });

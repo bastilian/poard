@@ -1,5 +1,15 @@
 import { useState } from 'react';
-import { ExpandableSection, SelectOption, SelectVariant, Spinner, TextInput, Toolbar, ToolbarContent, ToolbarGroup, ToolbarItem } from '@patternfly/react-core/dist/umd/react-core';
+import {
+  ExpandableSection,
+  SelectOption,
+  SelectVariant,
+  Spinner,
+  TextInput,
+  Toolbar,
+  ToolbarContent,
+  ToolbarGroup,
+  ToolbarItem,
+} from '@patternfly/react-core/dist/umd/react-core';
 import FilterSelect from '~/components/FilterSelect';
 import useFilterFetcher from './hooks/useFilterFetcher';
 import useFilters from './hooks/useFilters';
@@ -24,35 +34,47 @@ const FilterToolbar = ({ onSubmit, isFetching }) => {
               <FilterSelect
                 variant={SelectVariant.typeaheadMulti}
                 aria-label={name.replace(/^\w/, (c) => c.toUpperCase())}
-                onSelect={(_, value) => { setFilter(name, value); }}
+                onSelect={(_, value) => {
+                  setFilter(name, value);
+                }}
                 selections={selectedFilters?.[name]}
                 placeholderText={`Select ${name}`}
                 isPlain
               >
-                {values.map((value) => <SelectOption key={value} value={value} />)}
+                {values.map((value) => (
+                  <SelectOption key={value} value={value} />
+                ))}
               </FilterSelect>
             </ToolbarItem>
           </ToolbarGroup>
         ))}
-        {isFetching && <ToolbarItem style={{
-          position: 'absolute',
-          right: '20px',
-          top: '8px'
-        }}>
-          <Spinner size="lg" />
-        </ToolbarItem>}
+        {isFetching && (
+          <ToolbarItem
+            style={{
+              position: 'absolute',
+              right: '20px',
+              top: '8px',
+            }}
+          >
+            <Spinner size="lg" />
+          </ToolbarItem>
+        )}
 
         <ExpandableSection
           style={{ width: '100%' }}
           onToggle={onToggleAdvanceSearch}
-          toggleText={(
-            <small>{isAdvanceSearchExpanded ? 'Hide "advanced" search' : 'Show "advanced" search'}</small>
-          )}>
+          toggleText={
+            <small>
+              {isAdvanceSearchExpanded
+                ? 'Hide "advanced" search'
+                : 'Show "advanced" search'}
+            </small>
+          }
+        >
           <ToolbarGroup>
             <GitHubSearchInput />
           </ToolbarGroup>
         </ExpandableSection>
-
       </ToolbarContent>
     </Toolbar>
   );
