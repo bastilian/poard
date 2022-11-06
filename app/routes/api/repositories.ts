@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node";
+import { json } from '@remix-run/node';
 import * as repository from '~/models/repository.server';
 
 export const loader = async () => {
@@ -7,29 +7,33 @@ export const loader = async () => {
 };
 
 export const action = async ({ request }) => {
-  const form = (await request.formData());
+  const form = await request.formData();
   const users = form.getAll('users');
   const repositories = form.getAll('repositories');
   console.log(users, repositories);
   const where = {
     AND: {
-      ...users.length > 0 ? {
-        pullRequests: {
-          some: {
-            author: {
-              username: {
-                in: users
-              }
-            }
+      ...(users.length > 0
+        ? {
+            pullRequests: {
+              some: {
+                author: {
+                  username: {
+                    in: users,
+                  },
+                },
+              },
+            },
           }
-        }
-      } : {},
-      ...repositories.length > 0 ? {
-        name: {
-          in: repositories
-        }
-      } : {},
-    }
+        : {}),
+      ...(repositories.length > 0
+        ? {
+            name: {
+              in: repositories,
+            },
+          }
+        : {}),
+    },
   };
   console.log(JSON.stringify(where));
   const jsonData = await repository.all(where);

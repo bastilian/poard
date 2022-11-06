@@ -4,15 +4,21 @@ services:
   # Main Application
   app:
     build: .
-    command: sh -c "npm run dev"
+    command: sh -c "npx prisma generate && npm run dev"
+    ports:
+      - 3000:3000
     volumes:
       - /db
       - .:/app
+      - /app/node_modules
 
   # Prisma Database UI
   db-ui:
     build: .
-    command: sh -c "npm run db:studio"
+    command: sh -c "npx prisma generate && npm run db:studio"
+    ports:
+      - 5555:5555
     volumes:
       - /db
       - .:/app
+      - /app/node_modules

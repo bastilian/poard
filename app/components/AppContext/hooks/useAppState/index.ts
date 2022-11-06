@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const useAppState = () => {
+const useAppState = (preState = {}) => {
   const [appState, setAppState] = useState({});
 
   const setNamespacesAppState = (namespace: string, value: unknown) => {
@@ -15,6 +15,12 @@ const useAppState = () => {
       return newAppState;
     });
   };
+
+  useEffect(() => {
+    for (const [namespace, state] of Object.entries(preState)) {
+      setNamespacesAppState(namespace, state)
+    }
+  }, [preState])
 
   return {
     current: appState,
