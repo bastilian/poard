@@ -1,3 +1,4 @@
+import React from 'react';
 import type { PullRequest } from '@prisma/client';
 import { CUSTOM_PR_TAGS } from '~/../config';
 import CustomTag from './CustomTag';

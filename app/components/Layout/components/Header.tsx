@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Flex,
   FlexItem,
@@ -37,9 +38,8 @@ const Header: React.FC = () => (
           <AuthenticationBox />
         </FlexItem>
       </Flex>
-
     </MastheadContent>
-  </Masthead >
+  </Masthead>
 );
 
 export default Header;

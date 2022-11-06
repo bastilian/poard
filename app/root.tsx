@@ -1,7 +1,8 @@
+import React from 'react';
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import { Links, Meta, Outlet, Scripts, useLoaderData } from '@remix-run/react';
-import { json } from "@remix-run/node";
-import { getSession } from "~/services/sessions.server";
+import { json } from '@remix-run/node';
+import { getSession } from '~/services/sessions.server';
 import pfStyles from '@patternfly/patternfly/patternfly.css';
 import style from './styles/index.css';
 import AppContext from './components/AppContext';
@@ -25,12 +26,10 @@ export const meta: MetaFunction = () => ({
 });
 
 export const loader = async ({ request }) => {
-  const session = await getSession(
-    request.headers.get("Cookie")
-  );
+  const session = await getSession(request.headers.get('Cookie'));
 
   return session.data?.user ? json(session.data?.user) : null;
-}
+};
 
 export default function App() {
   const user = useLoaderData();
@@ -49,6 +48,6 @@ export default function App() {
           <Scripts />
         </AppContext>
       </body>
-    </html >
+    </html>
   );
 }

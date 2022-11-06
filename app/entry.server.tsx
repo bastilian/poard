@@ -1,3 +1,4 @@
+import React from 'react';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { EntryContext } from '@remix-run/node';

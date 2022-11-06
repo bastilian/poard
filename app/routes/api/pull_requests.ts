@@ -16,21 +16,21 @@ export const action = async ({ request }) => {
     AND: {
       ...(users?.length > 0
         ? {
-          author: {
-            username: {
-              in: users,
+            author: {
+              username: {
+                in: users,
+              },
             },
-          },
-        }
+          }
         : {}),
       ...(repositories?.length > 0
         ? {
-          repository: {
-            name: {
-              in: repositories,
+            repository: {
+              name: {
+                in: repositories,
+              },
             },
-          },
-        }
+          }
         : {}),
     },
   };

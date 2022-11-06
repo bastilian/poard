@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text } from '@patternfly/react-core/dist/umd/react-core';
 
 const UpdatedBy = ({ reporter }) => {

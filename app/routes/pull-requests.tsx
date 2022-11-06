@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useFetcher } from '@remix-run/react';
 import { Grid, GridItem } from '@patternfly/react-core/dist/umd/react-core';
 import { debounce } from '~/utils';
@@ -8,7 +8,7 @@ import FilterToolbar from '~/components/FilterToolbar';
 const PR_URL = '/api/pull_requests';
 
 // TODO The root "/" (here) should actually be something of a stream of all new/update pull requests that automatically updates
-export default () => {
+const PullRequests = () => {
   const fetcher = useFetcher();
   const pullRequestsGroupedByRepo = fetcher.data || [];
   const isFetching = fetcher.state === 'loading';
@@ -42,3 +42,5 @@ export default () => {
     </>
   );
 };
+
+export default PullRequests;

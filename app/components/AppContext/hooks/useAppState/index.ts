@@ -18,9 +18,9 @@ const useAppState = (preState = {}) => {
 
   useEffect(() => {
     for (const [namespace, state] of Object.entries(preState)) {
-      setNamespacesAppState(namespace, state)
+      setNamespacesAppState(namespace, state);
     }
-  }, [preState])
+  }, [preState]);
 
   return {
     current: appState,

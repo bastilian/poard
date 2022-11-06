@@ -1,9 +1,9 @@
-import authenticator from "~/services/authenticator.server";
+import authenticator from '~/services/authenticator.server';
 
 const login = ({ request }) =>
-  authenticator.authenticate("github", request, {
-    successRedirect: "/",
-    failureRedirect: "/",
+  authenticator.authenticate('github', request, {
+    successRedirect: '/',
+    failureRedirect: '/',
   });
 
 export const loader = login;

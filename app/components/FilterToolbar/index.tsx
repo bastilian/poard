@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   ExpandableSection,
   SelectOption,
   SelectVariant,
   Spinner,
-  TextInput,
   Toolbar,
   ToolbarContent,
   ToolbarGroup,

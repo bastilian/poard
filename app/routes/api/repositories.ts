@@ -15,23 +15,23 @@ export const action = async ({ request }) => {
     AND: {
       ...(users.length > 0
         ? {
-          pullRequests: {
-            some: {
-              author: {
-                username: {
-                  in: users,
+            pullRequests: {
+              some: {
+                author: {
+                  username: {
+                    in: users,
+                  },
                 },
               },
             },
-          },
-        }
+          }
         : {}),
       ...(repositories.length > 0
         ? {
-          name: {
-            in: repositories,
-          },
-        }
+            name: {
+              in: repositories,
+            },
+          }
         : {}),
     },
   };
