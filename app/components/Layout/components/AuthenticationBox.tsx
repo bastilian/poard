@@ -35,6 +35,6 @@ const Unauthenticated = () => (
 
 export default () => {
   const { current: { user } } = useContext(AppContext);
-  console.log(user)
+
   return user ? <Authenticated user={user} /> : <Unauthenticated />
 }

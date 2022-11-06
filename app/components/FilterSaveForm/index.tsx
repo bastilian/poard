@@ -44,7 +44,6 @@ const FilterSaveForm: React.FC<FilterSaveFormProps> = ({ filterStore }) => {
             id="filterName"
             aria-label="Filter name field"
             onChange={(value, ...rest) => {
-              console.log(value, rest);
               setFilterName(value);
             }}
           />
