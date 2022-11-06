@@ -45,8 +45,9 @@ model Repository {
   updatedAt DateTime @updatedAt
 
   pullRequests PullRequest[]
+  branches     Branch[]
 
-  @@index([name, gitHubId])
+  @@index([name, createdAt, updatedAt, gitHubId])
 }
 
 model PullRequest {
@@ -70,5 +71,35 @@ model PullRequest {
   lastActivityAt DateTime?
 
   @@index([title, gitHubId, createdAt, closedAt, updatedAt])
+}
+
+model Branch {
+  id       String @id @default(cuid())
+  gitHubId Int?   @unique
+
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id])
+
+  name String
+  sha  String
+
+  commits Commit[]
+  @@index([name, sha, gitHubId])
+}
+
+model Commit {
+  id       String @id @default(cuid())
+  gitHubId Int?   @unique
+
+  branchId String
+  branch   Branch @relation(fields: [branchId], references: [id])
+
+  sha         String
+  subject     String
+  description String
+
+  createdAt DateTime
+
+  @@index([sha, subject, gitHubId, createdAt])
 }
 

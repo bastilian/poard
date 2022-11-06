@@ -1,3 +1,4 @@
+// TODO Implement log levels INFO, DEBUG, ...
 export const log = (...args: any) => {
   console.info(...args);
 };
