@@ -1,5 +1,5 @@
-import { Select } from '@patternfly/react-core/dist/umd/react-core';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Select } from '@patternfly/react-core';
 
 interface FilterSelectProps {
   children: React.ReactNode;

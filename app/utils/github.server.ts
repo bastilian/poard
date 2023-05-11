@@ -47,6 +47,33 @@ export const repoPullRequests = async (
     })
   ).data;
 
+export const fetchBranchCommits = async (owner, repository, branch) =>
+  (
+    await octokit.request('GET /repos/{owner}/{repository}/commits', {
+      owner,
+      repository,
+      sha: branch,
+    })
+  ).data;
+
+export const fetchBranch = async (owner, repository, branch) =>
+  (
+    await octokit.request('GET /repos/{owner}/{repository}/branches/{branch}', {
+      owner,
+      repository,
+      branch,
+    })
+  ).data;
+
+export const fetchBranches = async (owner, repository) =>
+  (
+    await octokit.request('GET /repos/{owner}/{repository}/branches', {
+      owner,
+      repository,
+    })
+  ).data;
+
+// TODO Check if this is used, why, how, what was I thinking
 export default (() => {
   callCount++;
   debug('Calling API count: ', callCount);

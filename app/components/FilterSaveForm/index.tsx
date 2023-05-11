@@ -1,9 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import {
-  NavItem,
-  Text,
-  TextInput,
-} from '@patternfly/react-core/dist/umd/react-core';
+import React, { useState, useRef, useEffect } from 'react';
+import { NavItem, Text, TextInput } from '@patternfly/react-core';
 import { SaveIcon } from '@patternfly/react-icons';
 
 interface FilterSaveFormProps {
@@ -44,7 +40,6 @@ const FilterSaveForm: React.FC<FilterSaveFormProps> = ({ filterStore }) => {
             id="filterName"
             aria-label="Filter name field"
             onChange={(value, ...rest) => {
-              console.log(value, rest);
               setFilterName(value);
             }}
           />

@@ -1,15 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   ExpandableSection,
   SelectOption,
   SelectVariant,
   Spinner,
-  TextInput,
   Toolbar,
   ToolbarContent,
   ToolbarGroup,
   ToolbarItem,
-} from '@patternfly/react-core/dist/umd/react-core';
+} from '@patternfly/react-core';
 import FilterSelect from '~/components/FilterSelect';
 import useFilterFetcher from './hooks/useFilterFetcher';
 import useFilters from './hooks/useFilters';

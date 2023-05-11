@@ -1,4 +1,4 @@
-import log from '~/utils/log';
+import { debug } from '~/utils/log';
 import * as github from '~/utils/github.server';
 import * as owner from '~/models/owner.server';
 import * as repository from '~/models/repository.server';
@@ -8,7 +8,7 @@ import * as user from '~/models/user.server';
 const createOrganisations = async () => {
   // TODO Check and get the org from GitHub and assign GHid
   const organisationsToCreate = (process.env.CREATE_ORGS || '').split(',');
-  log('Begin scraping');
+  debug('Begin scraping');
 
   for (const name of organisationsToCreate) {
     await owner.createMissing(name);
@@ -16,6 +16,7 @@ const createOrganisations = async () => {
 };
 
 const syncRepositories = async () => {
+  debug('Syncing repos');
   // TODO ignore archived repositories
   const allOrganisations = await owner.all();
 
@@ -38,6 +39,7 @@ const syncRepositories = async () => {
 };
 
 const syncPullRequests = async () => {
+  debug('Syncing PRs');
   // TODO fetch all pull requests
   // TODO Set merged, closed and updated at
   const allRepossitories = await repository.many();
@@ -47,6 +49,7 @@ const syncPullRequests = async () => {
       repository.name,
       repository.owner.name
     );
+    debug('Syncing PRs for', repository);
 
     for (const {
       id: gitHubId,
@@ -58,7 +61,7 @@ const syncPullRequests = async () => {
       merged_at: mergedAt,
       closed_at: closedAt,
     } of repoPullrequests) {
-      // TODO Scrape labels, CI states, requested reviewer(s), assignees
+      // TODO Scrape branch, labels, CI states, requested reviewer(s), assignees
       const savedUser = await user.createMissing(pullRequestUser?.login, {
         gitHubId: pullRequestUser?.id,
       });
@@ -75,9 +78,50 @@ const syncPullRequests = async () => {
   }
 };
 
+const syncBranchCommits = async (owner, repository, branch) => {
+  debug('Syncing branche commits', branch.name);
+
+  const branchInfo = await github.fetchBranch(owner, repository, branch.name);
+  debug(branchInfo);
+
+  const branchCommits = await github.fetchBranchCommits(
+    owner,
+    repository,
+    branch.name
+  );
+  console.table(
+    branchCommits.map(
+      ({
+        sha,
+        commit: {
+          message,
+          author: { date },
+        },
+      }) => [sha, date, message]
+    )
+  );
+};
+
+const syncBranches = async () => {
+  debug('Syncing branches');
+  const allRepossitories = await repository.many();
+  for (const repository of allRepossitories) {
+    debug('Syncing branches', repository.name);
+    const branches = await github.fetchBranches(
+      repository.owner.name,
+      repository.name
+    );
+
+    for (const branch of branches) {
+      await syncBranchCommits(repository.owner.name, repository.name, branch);
+    }
+  }
+};
+
 // TODO Add support for scraping users (repositories)
 export default async () => {
   await createOrganisations();
   await syncRepositories();
-  await syncPullRequests();
+  // await syncPullRequests();
+  await syncBranches();
 };

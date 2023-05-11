@@ -1,4 +1,5 @@
-import { Label } from '@patternfly/react-core/dist/umd/react-core';
+import React from 'react';
+import { Label } from '@patternfly/react-core';
 
 interface PopOutLabelProps {
   label: string;

@@ -18,5 +18,6 @@ module.exports = {
     semi: 'error',
     quotes: ['error', 'single'],
     'prettier/prettier': ['error', { singleQuote: true }],
+    'react/prop-types': 'off',
   },
 };

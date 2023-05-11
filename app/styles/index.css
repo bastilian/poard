@@ -54,8 +54,6 @@ p.updatedBy {}
 .pf-c-button.cancelIcon {
   transition: ease-in-out 250ms;
   opacity: 0;
-
-  &
 }
 .saveInput.visible,
 .pf-c-button.saveIcon.visible,

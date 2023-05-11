@@ -1,3 +1,4 @@
+import React from 'react';
 import { TextInput } from '@patternfly/react-core/dist/umd/react-core';
 
 interface GitHubSearchInputProps {
