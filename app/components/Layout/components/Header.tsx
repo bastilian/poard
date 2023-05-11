@@ -10,7 +10,7 @@ import {
   NavItem,
   Title,
   Text,
-} from '@patternfly/react-core/dist/umd/react-core';
+} from '@patternfly/react-core';
 import AuthenticationBox from './AuthenticationBox';
 
 const Header: React.FC = () => (

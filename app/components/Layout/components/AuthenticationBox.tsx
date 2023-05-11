@@ -1,9 +1,5 @@
 import React, { useContext } from 'react';
-import {
-  Button,
-  Flex,
-  FlexItem,
-} from '@patternfly/react-core/dist/umd/react-core';
+import { Button, Flex, FlexItem } from '@patternfly/react-core';
 import Avatar from 'react-avatar';
 import { GithubIcon } from '@patternfly/react-icons';
 import AppContext from '~/utils/appContext';

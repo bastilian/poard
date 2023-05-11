@@ -1,9 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  NavItem,
-  Text,
-  TextInput,
-} from '@patternfly/react-core/dist/umd/react-core';
+import { NavItem, Text, TextInput } from '@patternfly/react-core';
 import { SaveIcon } from '@patternfly/react-icons';
 
 interface FilterSaveFormProps {

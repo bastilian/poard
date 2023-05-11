@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from '@patternfly/react-core/dist/umd/react-core';
+import { Label } from '@patternfly/react-core';
 import type { PullRequest } from '@prisma/client';
 
 interface CustomTagProps {

@@ -9,7 +9,7 @@ import {
   PanelMain,
   PanelMainBody,
   Title,
-} from '@patternfly/react-core/dist/umd/react-core';
+} from '@patternfly/react-core';
 
 import PullRequestCard from '../PullRequestCard';
 

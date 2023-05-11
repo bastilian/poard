@@ -8,7 +8,7 @@ import {
   GridItem,
   Label,
   Text,
-} from '@patternfly/react-core/dist/umd/react-core';
+} from '@patternfly/react-core';
 import moment from 'moment';
 import Avatar from 'react-avatar';
 import type { PullRequest } from '@prisma/client';

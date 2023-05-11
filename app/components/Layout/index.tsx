@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, PageSection } from '@patternfly/react-core/dist/umd/react-core';
+import { Page, PageSection } from '@patternfly/react-core';
 import { GithubIcon } from '@patternfly/react-icons';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';

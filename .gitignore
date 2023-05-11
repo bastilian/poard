@@ -1,7 +1,7 @@
 node_modules
 /build
 /public/build
-config.ts
+/config.ts
 /prisma/data.db
 /prisma/data.db-journal
 /coverage
